@@ -14,6 +14,8 @@ public class TextTask {
         //initialize input text into text list
         text = new ArrayList<String>();
         tracker = new HashMap<String, Integer>();
+        display = new ArrayList<String>();
+        fillIn = new ArrayList<String>();
         String[] words = in.split(" ");
         for (String n: words) {
             text.add(n);
@@ -70,7 +72,6 @@ public class TextTask {
     }
 
     public void makeDisplay() {
-        display = new ArrayList<String>();
         for (String s: text) {
             if (stripPunctuation(s).length()>=minLength && unique (stripPunctuation(s))) {
                 fillIn.add(s);

@@ -32,12 +32,34 @@ public class TestingPage extends AppCompatActivity{
 
         Intent intent = getIntent();
         inputText = intent.getStringExtra("input");
+        inputs = new ArrayList<EditText>();
 
         t = new TextTask(inputText);
         ArrayList<String> display = t.display();
 
 
         color = "#94cffe";
+
+        layout = findViewById(R.id.linear_layout);
+
+        //create display!
+
+        for (int i=0; i<display.size(); i++) {
+            String s = display.get(i);
+            if (s.equals("!!BLANK!!")) {
+                EditText e = new EditText(this);
+                //e.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+                inputs.add(e);
+                layout.addView(e);
+            }
+            else {
+                TextView t = new TextView(this);
+                //t.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+                t.setText(s);
+                layout.addView(t);
+            }
+        }
+
         menuButton = findViewById(R.id.menuButton);
         menuButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -58,24 +80,6 @@ public class TestingPage extends AppCompatActivity{
                 proceed(v);
             }
         });
-
-        layout = findViewById(R.id.linear_layout);
-
-        //create display!
-
-        for (int i=0; i<userInput.size(); i++) {
-            String s = userInput.get(i);
-            if (s.equals("!!BLANK!!")) {
-                EditText e = new EditText(this);
-                inputs.add(e);
-                layout.addView(e);
-            }
-            else {
-                TextView t = new TextView(this);
-                t.setText(s);
-                layout.addView(t);
-            }
-        }
     }
 
     public void returnMainMenu(View view) {

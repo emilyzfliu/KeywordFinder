@@ -45,9 +45,11 @@ public class TextReaderPage extends AppCompatActivity{
     }
 
     public void proceed(View view) {
-        nextButton.setTextColor(Color.parseColor(color));
-        Intent intent = new Intent(TextReaderPage.this, TestingPage.class);
-        intent.putExtra("input",inputField.getText().toString());
-        startActivity(intent);
+        if (!inputField.getText().toString().equals("")) {
+            nextButton.setTextColor(Color.parseColor(color));
+            Intent intent = new Intent(TextReaderPage.this, TestingPage.class);
+            intent.putExtra("input",inputField.getText().toString());
+            startActivity(intent);
+        }
     }
 }
